@@ -1,0 +1,44 @@
+.all_menu{
+    display: flex;
+    width: 100%;
+    margin-bottom: 80px;
+    color: #5c5c5c;
+}
+
+.title{
+    text-align: center;
+    margin: 50px 0;
+    color: #5c5c5c;
+
+}
+.user{
+    font-family: 'Courier New', Courier, monospace;
+    color: #5c5c5c;
+}
+
+.menu{
+    flex: 1.5;
+    padding: 10px 0 20px 40px;
+}
+.menu li{
+    color: #5c5c5c;
+    padding: 0 0 40px 0;
+}
+.menu li a{
+    color: #5c5c5c;
+    text-decoration: none;
+    font-weight: bold;
+}
+.menu li a:hover{
+    color: #ccc;
+}
+
+.content{
+    flex: 8.5;
+    border: 0.5px solid #ccc;
+    color: #5c5c5c;
+}
+
+h3{
+    color: #5c5c5c;
+}

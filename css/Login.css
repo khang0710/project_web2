@@ -1,0 +1,65 @@
+.login{
+    margin: 170px 0 80px 0;
+    text-align: center;
+    color: #5c5c5c ;
+}
+.login h2{
+    margin: 25px 0;
+}
+
+.inputs_login{
+    margin: 20px 0;
+}
+
+.Input {
+    width: 400px;
+    padding: 15px;
+    margin:15px 0 0 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+#pInput {
+    width: 400px;
+    padding: 15px;
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+#loginButton {
+    width: 400px;
+    padding: 15px;
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: 0;
+    outline: none;
+}
+
+
+.forgot a{
+    color: #5c5c5c;
+    text-decoration: none;
+    margin-left: 300px;
+    font-size: small;
+}
+.forgot a:hover{
+    color: black;
+}
+
+.donthaveacc{
+    margin-top: 10px;
+}
+
+.donthaveacc a:hover{
+    color: #5c5c5c;
+}
+
+.salebanner{
+    background-color: e3dfd3;
+    color: #3e4500;
+    text-align: center;
+    z-index: 3;
+}

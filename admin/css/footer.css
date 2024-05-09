@@ -1,0 +1,31 @@
+.lienhe{
+    display: flex;
+    width: 100%;
+    background-color: #e3dfd3;
+    padding: 50px 100px 100px 100px;
+    color: #3e4500;
+
+}
+
+.diachi {
+    flex: 3;
+}
+
+.chitiet {
+    padding: 0px 30px;
+    font-size: small;
+}
+
+.chitiet2 {
+    font-size: small;
+    line-height: 2;
+}
+
+.infor {
+    flex: 2;
+}
+
+.fanpage {
+    flex: 3;
+}
+

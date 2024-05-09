@@ -1,0 +1,72 @@
+.main{
+    margin: 150px 80px 80px 80px;
+    color: #5c5c5c;
+}
+
+.small-list{
+    font-size: small;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.content{
+    display: flex;
+}
+
+.line{
+    border-top: 0.5px solid #ccc;
+}
+
+.order-list{
+    flex:7;
+    padding: 0 50px 0 0;
+}
+
+.address{
+    flex: 3;
+    padding: 0;
+    font-weight: normal;
+}
+
+#btnDiaChi {
+    width: 150px;
+    padding: 12px;
+    margin: 10px 0 0 0;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    border: 0;
+    outline: none;
+}
+
+.inputDiaChi{
+    width: 300px;
+    padding: 5px;
+    border: 0.5px solid #ccc;
+    margin: 10px 0 0 0;
+}
+
+#btnHuy{
+    float: right;
+    padding: 5px 10px;
+    font-size: small;
+    border: 0.5px solid #ccc;
+    background-color: white;
+    color: black;
+}
+
+.tb{
+    border: 0px solid #ccc;
+    font-size: small;
+}
+
+td{
+    padding: 2px 0;
+}
+
+.tong{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0 0 10px 0;
+    border-bottom: 0.5px solid #ccc;
+}

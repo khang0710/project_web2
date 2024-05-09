@@ -1,0 +1,65 @@
+.button-a {
+    padding: 5px 10px;
+    background-color: #e3dfd3;
+    color: #3e4500;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: #3e4500;
+    font-weight: bold;
+}
+
+a:hover,
+a:focus {
+    color: #000;
+}
+
+h3 {
+    color: #3e4500;
+
+}
+
+.inPut {
+    font-size: medium;
+    border: 1px solid #ccc;
+    color: #5c5c5c;
+    padding: 5px;
+}
+
+.btnLoc {
+    width: 100px;
+    border: 1px solid #5c5c5c;
+    color: #5c5c5c;
+    padding: 7px;
+    background-color: white;
+}
+
+
+td {
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-bottom: 0;
+    padding: 10px 0 10px 15px;
+}
+
+th {
+    color: #3e4500;
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-bottom: 0;
+    padding: 10px 0;
+}
+
+.selectA {
+    width: 200px;
+    padding: 5px;
+    border: 0.5px solid #ccc;
+    color: #5c5c5c;
+    font-size: medium;
+    outline: none;
+    line-height: 1.5;
+}

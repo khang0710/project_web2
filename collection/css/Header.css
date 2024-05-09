@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px 10px 10px;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: white;
+    color: #000;
+}
+
+.logo {
+    flex: 2.5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.menu {
+    flex: 8;
+    color: #000;
+    font-size: small;
+    text-align: center;
+    position: relative;
+}
+
+.menu ul {
+    padding: 0;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.menu ul li {
+    display: inline-block;
+    /* Hiển thị các mục danh sách trên cùng một dòng */
+    margin-right: 45px;
+    /* Khoảng cách giữa các mục danh sách */
+}
+
+.menu li a {
+    text-decoration: none;
+
+}
+
+.other {
+    flex: 2;
+    display: flex;
+}
+
+.other li {
+    margin-right: 30px;
+    vertical-align: middle;
+}
+
+.dropdown {
+    position: relative;
+    display: contents;
+}
+
+.dropdown-child {
+    display: none;
+    background-color: white;
+    position: absolute;
+    text-align: left;
+    width: 200px;
+    opacity: 0;
+    /* Thiết lập opacity ban đầu là 0 */
+    transition: opacity 0.5s;
+}
+
+.dropdown-child .line {
+    margin-top: 18.5px;
+    border-top: 2.5px solid #5c5c5c;
+}
+
+.listdanhmuc {
+    padding: 15px 0 15px 0;
+    border: 0.5px solid #ccc;
+}
+
+.dropdown-child a {
+    color: #5c5c5c;
+    font-size: 15px;
+    line-height: 3;
+    padding: 0 25px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-child a:hover {
+    color: #ccc;
+}
+
+
+.dropdown:hover .dropdown-child,
+.dropdown-child.show,
+.menu:hover {
+    display: block;
+    opacity: 1;
+}
+
+
+.full-screen-image {
+    position: relative;
+
+}
+
+.full-screen-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Hiển thị hình ảnh mà không bị méo */
+}
+
+.introduction-section {
+    display: flex;
+    /* Sử dụng flexbox để sắp xếp các phần tử */
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.introduction-text {
+    flex: 1;
+    /* Phần văn bản sẽ chiếm 1 phần */
+    padding: 50px 100px;
+}
+
+.introduction-image {
+    flex: 1;
+    /* Phần hình ảnh sẽ chiếm 1 phần */
+    padding: 15px;
+}
+
+.introduction-image img {
+    width: 100%;
+    height: auto;
+    /* Đảm bảo hình ảnh không bị méo */
+}
+
+.history {
+    text-align: center;
+    padding: 100px 300px;
+    line-height: 3;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.lienhe{
+    display: flex;
+    /* Sử dụng flexbox để sắp xếp các phần tử */
+    width: 100%;
+    background-color: #e3dfd3;
+    padding: 50px 100px 100px 100px;
+    color: #3e4500;
+
+}
+
+.diachi {
+    flex: 3;
+}
+
+.chitiet {
+    padding: 0px 30px;
+    font-size: small;
+}
+
+.chitiet2 {
+    font-size: small;
+    line-height: 2;
+}
+
+.infor {
+    flex: 2;
+}
+
+.fanpage {
+    flex: 3;
+}
+
+.search-container {
+    display: none;
+    position: relative;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 25px;
+    margin-top: 118px;
+    /* Tạo khoảng cách giữa header và phần tìm kiếm */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: 100px;
+    text-align: center;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+}
+
+#searchInput {
+    width: 92%;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 22px;
+    border: 0;
+    outline: none;
+}
+
+#searchButton {
+    font-size: 22px;
+    margin-top: 10px;
+    border: 0;
+    background-color: white;
+    color: gray;
+}
+
+.listshop {
+    padding: 80px 0;
+    width: 100%;
+    z-index: 0;
+    position: relative;
+}
+
+.slideitem {
+    width: 1080px;
+    overflow: hidden;
+    margin: 0 95px;
+}
+
+.listitem {
+    display: flex;
+    transition: 0.9s;
+}
+
+.title-new {
+    text-align: center;
+    padding-bottom: 60px;
+    color: #5c5c5c;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.item {
+    padding: 0 30px;
+}
+
+.item-img {
+    width: 210px;
+    height: 280px;
+}
+
+.item-text {
+    padding: 20px 0;
+    line-height: 1.5;
+    color: #5c5c5c;
+}
+
+.bx {
+    text-align: center;
+    color: #5c5c5c;
+    font-size: 24px;
+}
+
+.bx:hover {
+    color: #5c5c5c;
+}
+
+.bx-chevron-left {
+    left: 0;
+    padding: 0 40px;
+    position: absolute;
+    font-size: 40px;
+    top: 50%;
+    color: #ccc;
+    z-index: 2;
+}
+
+.bx-chevron-right {
+    right: 0;
+    padding: 0 40px;
+    position: absolute;
+    font-size: 40px;
+    top: 50%;
+    color: #ccc;
+    z-index: 2;
+}

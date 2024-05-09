@@ -1,0 +1,58 @@
+.title{
+    margin: 170px 0 80px;
+    text-align: center;
+    color: #5c5c5c;
+}
+.main{
+    margin: 0 0 100px 0;
+    padding: 0 130px;
+    color: #5c5c5c;
+}
+th{
+    padding: 10px;
+}
+td{
+    padding: 25px 0;
+    border-top: 0.5px solid #ccc;
+}
+.td1{
+    padding-left: 25px;
+}
+.tb{
+    border: 0px solid #ccc;
+}
+
+.btIn-Decrease{
+    font-size: small;
+    background-color: white;
+    color: #5c5c5c;
+    padding: 10px 5px;
+    border: 0.5px solid #ccc;
+    margin: 0;
+    width: 40px;
+}
+.inputNumber{
+    font-size: small;
+    background-color: white;
+    color: #5c5c5c;
+    padding: 10px 5px;
+    border: 0.5px solid #ccc;
+    margin: 0;
+    width: 40px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: #5c5c5c;
+}
+.btAdd{
+    float: right;
+    padding: 15px 30px;
+    margin: 20px 0 100px 0;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: 0;
+    outline: none;
+}
+

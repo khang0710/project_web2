@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #5c5c5c;
+    font-family: 'Times New Roman', Times, serif;
+}
+.main{
+    display: flex;
+    width: 100%;
+}
+
+.infor{
+    flex: 5;
+    border-right: 1px solid #ccc;
+    padding: 50px 50px 50px 80px;
+}
+.title{
+    color: #3e4500;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product{
+    flex: 5;
+    background-color: #fcfbf6;
+    padding: 50px;
+}
+
+a{
+    text-decoration: none;
+    color: #3e4500;
+}
+a:hover{
+    color: #000;
+}
+
+h3{
+    font-weight: normal;
+    color: #3e4500;
+}
+
+.td1{
+    padding:0;
+}
+
+.small-title{
+    font-size: small;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.input{
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: medium;
+}
+.combo{
+    width: 500px;
+    max-height: 220px;
+    padding: 15px;
+    margin: 0;
+    border: 1px solid #ccc;
+    font-size: small;
+    overflow-y: auto;
+}
+
+#btnThem{
+    width: 150px;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    border: 0;
+    outline: none;
+}
+
+#btnLuu{
+    width: 150px;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    border: 0;
+    outline: none;
+}
+
+.pay{
+    width: 500px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    font-size: small;
+}
+
+td{
+    padding: 10px 0;
+    border-bottom: 0.5px solid #ccc;
+}
+.td1{
+    padding: 10px 0;
+    border: none;
+}
+.tong{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 25px 0;
+    border: none;
+}
+.tb{
+    border: 0px solid #ccc;
+    font-size: small;
+}
+
+#btnDatHang{
+    float: right;
+    width: 150px;
+    padding: 15px;
+    background-color: #000;
+    color: white;
+    border: 0;
+    outline: none;
+}

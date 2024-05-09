@@ -1,0 +1,110 @@
+.product{
+    display: flex;
+    margin: 170px 50px 50px 50px;
+    color: #5c5c5c;
+}
+
+.product_img img{
+    width: 500px;
+}
+
+.product_info{
+    width: 100%;
+    padding: 0 50px;
+}
+
+.seLect{
+    padding: 30px 0;
+    width: 100%;
+    border-top: 0.5px solid #ccc;
+    border-bottom: 0.5px solid #ccc;
+
+}
+
+.btAdd{
+    width: 400px;
+    padding: 20px;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: 0;
+    outline: none;
+}
+
+
+h3{
+    font-size: 20px;
+    font-weight:bold;
+}
+.cost{
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ecb5b5;
+    font-weight: bold;
+}
+
+.btIn-Decrease{
+    font-size: medium;
+    background-color: white;
+    color: #5c5c5c;
+    padding: 10px 5px;
+    border: 0.5px solid #ccc;
+    margin: 0;
+    width: 45px;
+}
+.inputNumber{
+    font-size: medium;
+    background-color: white;
+    color: #5c5c5c;
+    padding: 10px 5px;
+    border: 0.5px solid #ccc;
+    margin: 0;
+    width: 45px;
+    text-align: center;
+}
+
+.button {
+    margin: 10px 10px 10px 0;
+    width: 90px;
+    height: 40px;
+    display: inline-block;
+  }
+  
+  .button label,
+  .button input {
+    display: block;
+    
+    padding: 5px;
+    text-align: center;
+    font-size: medium;
+    color: #5c5c5c;
+    border: 0.5px solid #ccc;
+    width: 90px;
+    overflow: hidden;
+  }
+  
+  .button input[type="radio"] {
+    opacity: 0.011;
+    z-index: 100;
+  }
+  
+  .button input[type="radio"]:checked + label {
+    color: #000;
+    border: 0.5px solid #000;
+  }
+  
+  .button label {
+    cursor: pointer;
+    z-index: 90;
+    line-height: 1.8em;
+  }
+
+  .ip{
+    border: 0;
+    outline: none;
+    background-color: white;
+    color: #3e4500;
+    font-weight: bold;
+}
+  
