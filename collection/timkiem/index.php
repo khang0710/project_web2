@@ -84,7 +84,7 @@ radioButtons.forEach(function (radioButton) {
 });
 
 var selectElement = document.getElementById('selectGiaBanS');
-selectElement.addEventListener('change', buildURL);
+selectElement.addEventListener('change', buildURLS);
 </script>
 </body>
 </html>
