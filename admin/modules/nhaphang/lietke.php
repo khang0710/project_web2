@@ -1,9 +1,46 @@
 <?php
-$sql_sanpham = "SELECT * FROM sanpham WHERE hienThi = 1 ORDER BY idSanPham DESC";
+$danhMuc = '';
+$timKiem = '';
+if (isset($_GET['danhMuc'])) {
+    $danhMuc = $_GET['danhMuc'];
+} else {
+    $danhMuc = '';
+}
+if (isset($_GET['timKiem'])) {
+    $timKiem = $_GET['timKiem'];
+} else {
+    $timKiem = '';
+}
+if ($danhMuc != '' && $timKiem == '') {
+    $sql_sanpham = "SELECT * FROM sanpham WHERE loaiSanPham = '".$danhMuc."'";
+} elseif ($danhMuc == '' && $timKiem != '') {
+    $sql_sanpham = "SELECT * FROM sanpham WHERE tenSanPham LIKE '%".$_GET['timKiem']."%'";
+} elseif ($danhMuc != '' && $timKiem != '') {
+    $sql_sanpham = "SELECT * FROM sanpham WHERE loaiSanPham = '".$_GET['danhMuc']."' AND tenSanPham LIKE '%".$_GET['timKiem']."%'";
+}else {
+    $sql_sanpham = "SELECT * FROM sanpham ORDER BY idSanPham DESC";
+}
 $query = mysqli_query($conn, $sql_sanpham);
-
 ?>
-<h3> ✩⋆｡Quản Lý Nhập Hàng</h3><br><br>
+<h3> ✩⋆｡Quản Lý Nhập Hàng</h3><br>
+
+<form action="" method="GET">
+    <input type="hidden" name="action" value="<?php echo $_GET['action'] ?>">
+    <input type="hidden" name="query" value="<?php echo $_GET['query'] ?>">
+    <select class="selectA" name="danhMuc" id="selectGiaBan">
+        <option value="">Chọn</option>
+        <?php
+        $sql_danhmuc = "SELECT * FROM danhmuc";
+        $query_danhmuc = mysqli_query($conn, $sql_danhmuc);
+        while ($row_danhmuc = mysqli_fetch_array($query_danhmuc)) {
+        ?>
+            <option value="<?php echo $row_danhmuc['idDanhMuc'] ?>" <?php if ($danhMuc == $row_danhmuc['idDanhMuc']) echo 'selected'; ?>><?php echo $row_danhmuc['tenDanhMuc'] ?></option>
+        <?php } ?>
+    </select>&emsp;
+    <input type="text" name="timKiem" class="inPut" placeholder="Tìm kiếm" value="<?php if ($timKiem != '') echo $timKiem; ?>">
+    <button type="submit" class="btnLoc">OK</button>
+</form><br><br>
+
 <div class="list">
     <ul class="inlist">
         <?php
@@ -35,7 +72,7 @@ $query = mysqli_query($conn, $sql_sanpham);
     }
 
     .list {
-        max-height: 320px;
+        max-height: 400px;
         overflow-y: auto;
     }
 

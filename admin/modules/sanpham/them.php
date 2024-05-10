@@ -1,4 +1,4 @@
-<a href="index.php?action=sanpham&query=lietke"><button style="float: right;" class="button-a" type="button">
+<a href="javascript:history.back()"><button style="float: right;" class="button-a" type="button">
                 <h3>Quay lại</h3>
         </button></a>
 <h3>Thêm Sản Phẩm</h3><br><br>

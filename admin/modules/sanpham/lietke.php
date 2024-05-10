@@ -1,12 +1,21 @@
 <?php
-if (isset($_GET['danhMuc']) && empty($_GET['timKiem'])) {
-    if ($_GET['danhMuc'] == ''){
-        $sql_sanpham = "SELECT * FROM sanpham ORDER BY idSanPham DESC";
-    }else{
-    $sql_sanpham = "SELECT * FROM sanpham WHERE loaiSanPham = '".$_GET['danhMuc']."'";}
-} elseif (empty($_GET['danhMuc']) && isset($_GET['timKiem'])) {
+$danhMuc = '';
+$timKiem = '';
+if (isset($_GET['danhMuc'])) {
+    $danhMuc = $_GET['danhMuc'];
+} else {
+    $danhMuc = '';
+}
+if (isset($_GET['timKiem'])) {
+    $timKiem = $_GET['timKiem'];
+} else {
+    $timKiem = '';
+}
+if ($danhMuc != '' && $timKiem == '') {
+    $sql_sanpham = "SELECT * FROM sanpham WHERE loaiSanPham = '".$danhMuc."'";
+} elseif ($danhMuc == '' && $timKiem != '') {
     $sql_sanpham = "SELECT * FROM sanpham WHERE tenSanPham LIKE '%".$_GET['timKiem']."%'";
-} elseif (isset($_GET['danhMuc']) && isset($_GET['timKiem'])) {
+} elseif ($danhMuc != '' && $timKiem != '') {
     $sql_sanpham = "SELECT * FROM sanpham WHERE loaiSanPham = '".$_GET['danhMuc']."' AND tenSanPham LIKE '%".$_GET['timKiem']."%'";
 }else {
     $sql_sanpham = "SELECT * FROM sanpham ORDER BY idSanPham DESC";
@@ -28,10 +37,10 @@ $query2 = mysqli_query($conn, $sql_sanpham);
         $query_danhmuc = mysqli_query($conn, $sql_danhmuc);
         while ($row_danhmuc = mysqli_fetch_array($query_danhmuc)) {
         ?>
-            <option value="<?php echo $row_danhmuc['idDanhMuc'] ?>" <?php if (isset($_GET['danhMuc']) && $_GET['danhMuc'] == $row_danhmuc['idDanhMuc']) echo 'selected'; ?>><?php echo $row_danhmuc['tenDanhMuc'] ?></option>
+            <option value="<?php echo $row_danhmuc['idDanhMuc'] ?>" <?php if ($danhMuc == $row_danhmuc['idDanhMuc']) echo 'selected'; ?>><?php echo $row_danhmuc['tenDanhMuc'] ?></option>
         <?php } ?>
     </select>&emsp;
-    <input type="text" name="timKiem" class="inPut" placeholder="Tìm kiếm">
+    <input type="text" name="timKiem" class="inPut" placeholder="Tìm kiếm" value="<?php if ($timKiem != '') echo $timKiem; ?>">
     <button type="submit" class="btnLoc">OK</button>
 </form><br>
 <div style="overflow-y: auto; max-height: 600px;">
@@ -81,7 +90,7 @@ $query2 = mysqli_query($conn, $sql_sanpham);
                 </td>
                 <script>
                     function confirmDelete(id) {
-                        if (confirm("⚠️ CẢNH BÁO! ⚠️\nNếu bạn xóa sản phẩm này, các chi tiết sản phẩm và sản phẩm có trong hóa đơn liên quan sẽ bị xóa hết\n\nGợi ý: Nếu bạn chỉ muốn ẩn sản phẩm đi. Hãy vào chức năng chỉnh sửa và cập nhật lại trạng thái sản phẩm\n\nBẠN CÓ CHẮC CHẮN MUỐN XÓA?")) {
+                        if (confirm("⚠️ CẢNH BÁO! ⚠️\nNếu bạn chọn xóa sản phẩm mà các chi tiết sản phẩm và sản phẩm có trong hóa đơn liên quan sẽ không bị xóa mà chỉ ẩn đi. Các trường hợp còn lại sẽ bị xóa\n\nGợi ý: Nếu bạn muốn hiển thị lại sản phẩm này. Hãy vào chức năng chỉnh sửa và cập nhật lại trạng thái sản phẩm\n\nBẠN CÓ CHẮC CHẮN MUỐN XÓA?")) {
                             // Nếu người dùng nhấn Yes trong hộp thoại xác nhận
                             window.location.href = "modules/sanpham/xuly.php?idsp=" + id;
                         }

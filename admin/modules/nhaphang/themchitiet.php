@@ -2,7 +2,7 @@
 <?php
         $id = $_GET['idsp'];
         ?>
-<a href="index.php?action=nhaphang&query=chitiet&idsp=<?php echo $id; ?>"><button style="float: right;" class="button-a" type="button">
+<a href="javascript:history.back()"><button style="float: right;" class="button-a" type="button">
                 <h3>Quay lại</h3>
         </button></a>
 <h3>Thêm chi tiết sản phẩm:</h3><br><br>
@@ -21,9 +21,6 @@
         <br><br>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="kichCo" value="None"> None &nbsp;&nbsp;&nbsp;&nbsp;
-        <br><br>
-        <b>*Số lượng </b><br><br>
-        <input style="font-size: 18px; padding:8px;" type="text" name="soLuong">
         <br><br>
 
         <br><button class="button-a" name="themChiTiet" type="submit">

@@ -32,10 +32,7 @@ if (isset($_POST['themSanPham'])) {
     mysqli_query($conn, $sql_them);
     move_uploaded_file($hinhAnh_tmp, 'uploads/' . $hinhAnh);
     echo "<script>alert('Thêm sản phẩm thành công!');</script>";
-
-    echo "<script>window.location.href = '../../index.php?action=sanpham&query=lietke';</script>";
-
-    //header('Location:../../index.php?action=sanpham&query=them');
+    echo "<script>window.history.go(-2);</script>";
 } elseif (isset($_POST['suaSanPham'])) {
     //Sua
     $id = $_GET['idsp'];
@@ -47,7 +44,8 @@ if (isset($_POST['themSanPham'])) {
 
     mysqli_query($conn, $sql_sua);
     move_uploaded_file($hinhAnh_tmp, 'uploads/' . $hinhAnh);
-    header("Location:../../index.php?action=sanpham&query=sua&idsp=$id");
+    echo "<script>alert('Cập nhật sản phẩm thành công!');</script>";
+    echo "<script>window.history.back();</script>";
 } elseif (isset($_POST['themChiTiet'])) {
     //ThemChiTiet
     $sql_themct = "INSERT INTO `chitietsanpham`(`idSanPham`, `mauSac`, `kichCo`, `soLuong`) VALUES 

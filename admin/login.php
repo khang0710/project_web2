@@ -14,22 +14,27 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     session_start();
     include("config/connetMySQL.php");
     if (isset($_POST["dangNhap"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
-        $sql = "SELECT * FROM admin WHERE userName = '".$username."' AND password = '".$password."' LIMIT 1";
-        $row = mysqli_query($conn,$sql);
+        $sql = "SELECT * FROM admin WHERE userName = '" . $username . "' AND password = '" . $password . "' LIMIT 1";
+        $row = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($row);
         if ($count == 1) {
-            $_SESSION["dangNhap"] = $username;
-            header("location:index.php");
-        }else if($username == ""){
+            $status = mysqli_fetch_assoc($row);
+            if ($status['trangThai'] != 0) {
+                $_SESSION["dangNhap"] = $username;
+                header("location:index.php");
+            } else {
+                echo "<script>alert('Tài khoản của bạn đã bị khóa!');</script>";
+                echo "<script>window.location.href = 'login.php';</script>";
+            }
+        } else if ($username == "") {
             echo "<script>alert('Vui lòng nhập tên đăng nhập hoặc mật khẩu!');</script>";
-        }
-        else{
+        } else {
             echo "<script>alert('Sai tên đăng nhập hoặc mật khẩu!');</script>";
             echo "<script>window.location.href = 'login.php';</script>";
         }
@@ -38,25 +43,25 @@
     include("modules/header.php");
     ?>
     <form action="" method="POST">
-    <div class="login">
-        <h2>Đăng Nhập ADMIN</h2>
-        Vui lòng nhập tên người dùng và mật khẩu:
-        <div class="inputs_login">
-            <ul>
-                <input type="text" name="username" id="uInput" placeholder="Tên đăng nhập">
-            </ul>
-            <ul>
-                <input type="password" name="password" id="pInput" placeholder="Mật khẩu">
-            </ul>
+        <div class="login">
+            <h2>Đăng Nhập ADMIN</h2>
+            Vui lòng nhập tên người dùng và mật khẩu:
+            <div class="inputs_login">
+                <ul>
+                    <input type="text" name="username" id="uInput" placeholder="Tên đăng nhập">
+                </ul>
+                <ul>
+                    <input type="password" name="password" id="pInput" placeholder="Mật khẩu">
+                </ul>
+            </div>
+            <div class="forgot">
+                <a href="#">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" name="dangNhap" id="loginButton">ĐĂNG NHẬP</button>
+            <div class="donthaveacc">
+                Bạn chưa có tài khoản? <a href="#">Đăng ký?</a>
+            </div>
         </div>
-        <div class="forgot">
-            <a href="#">Quên mật khẩu?</a>
-        </div>
-        <button type="submit" name="dangNhap" id="loginButton">ĐĂNG NHẬP</button>
-        <div class="donthaveacc">
-            Bạn chưa có tài khoản? <a href="#">Đăng ký?</a>
-        </div>
-    </div>
     </form>
     <?php
     include("modules/footer.php");

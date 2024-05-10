@@ -3,7 +3,7 @@ $id = $_GET['idsp'];
 $sql_sanpham = "SELECT * FROM sanpham WHERE idSanPham = '" . $id . "'";
 $query2 = mysqli_query($conn, $sql_sanpham);
 ?>
-<a href="index.php?action=nhaphang&query=lietke"><button class="button-a" style="float: right; margin-left:20px" type="button">
+<a href="javascript:history.back()"><button class="button-a" style="float: right; margin-left:20px" type="button">
         <h3>Quay lại</h3>
     </button></a>
 <a href="index.php?action=nhaphang&query=themchitiet&idsp=<?php echo $id ?>"><button class="button-a" style="float: right;" type="button">
@@ -70,13 +70,13 @@ $query = mysqli_query($conn, $sql_chitiet);
                     <td><?php echo $row['soLuong'] ?></td>
                     <td width="240px">
                         &nbsp;&nbsp;<a href="?action=nhaphang&query=sua&id=<?php echo $row['idChiTietSP'] ?>"> Cập nhật</a>&emsp;&emsp;|&emsp;&emsp;
-                        <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row['idSanPham']; ?>)">Xóa</a>
+                        <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row['idChiTietSP']; ?>)">Xóa</a>
                     </td>
                     <script>
                         function confirmDelete(id) {
                             if (confirm("Bạn có chắc chắn muốn xóa?")) {
                                 // Nếu người dùng nhấn Yes trong hộp thoại xác nhận
-                                window.location.href = "modules/sanpham/xuly.php?idsp=" + id;
+                                window.location.href = "modules/nhaphang/xuly.php?idct=" + id;
                             }
                         }
                     </script>

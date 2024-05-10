@@ -1,11 +1,26 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include('../../config/connetMySQL.php');
-    $trangThai = $_POST['trangThai'];
-    $start = $_POST['start'];
-    $end = $_POST['end'];
-    if ($trangThai != 'Tất cả' && $start == '' && $end == '') {
-        $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
+
+$trangThai = '';
+$start = '';
+$end = '';
+if (isset($_GET['trangThai'])) {
+    $trangThai = $_GET['trangThai'];
+} else {
+    $trangThai = '';
+}
+if (isset($_GET['start'])) {
+    $start = $_GET['start'];
+} else {
+    $start = '';
+}
+if (isset($_GET['end'])) {
+    $end = $_GET['end'];
+} else {
+    $end = '';
+}
+
+if ($trangThai != '' && $start == '' && $end == '') {
+    $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
     SUM(sanpham.giaBan*chitietdonhang.soLuong) AS tongGiaBan, 
     SUM(chitietdonhang.soLuong) AS tongSoLuong
     FROM chitietdonhang
@@ -17,9 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     WHERE donhang.trangThai = '" . $trangThai . "'
     GROUP BY donhang.maDonHang 
     ORDER BY donhang.idDonHang DESC";
-        $query_donhang = mysqli_query($conn, $sql_donhang);
-    } elseif ($trangThai != 'Tất cả' && $start != '' && $end != '') {
-        $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
+    $query_donhang = mysqli_query($conn, $sql_donhang);
+} elseif ($trangThai == '' && $start != '' && $end != '') {
+    $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
     SUM(sanpham.giaBan*chitietdonhang.soLuong) AS tongGiaBan, 
     SUM(chitietdonhang.soLuong) AS tongSoLuong
     FROM chitietdonhang
@@ -28,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     JOIN donhang ON chitietdonhang.idDonHang = donhang.idDonHang
     JOIN chitietkhachhang ON donhang.idChiTietKH = chitietkhachhang.idChiTietKH
     JOIN khachhang ON chitietkhachhang.idKhachHang = khachhang.idKhachHang
-    WHERE donhang.trangThai = '" . $trangThai . "' AND donhang.ngayTao BETWEEN '". $start. "' AND '". $end. "'
+    WHERE donhang.ngayTao BETWEEN '" . $start . "' AND '" . $end . "'
     GROUP BY donhang.maDonHang 
     ORDER BY donhang.idDonHang DESC";
-        $query_donhang = mysqli_query($conn, $sql_donhang);
-    }elseif ($trangThai == 'Tất cả' && $start != '' && $end != '') {
-        $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
+    $query_donhang = mysqli_query($conn, $sql_donhang);
+} elseif ($trangThai != '' && $start != '' && $end != '') {
+    $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
     SUM(sanpham.giaBan*chitietdonhang.soLuong) AS tongGiaBan, 
     SUM(chitietdonhang.soLuong) AS tongSoLuong
     FROM chitietdonhang
@@ -42,25 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     JOIN donhang ON chitietdonhang.idDonHang = donhang.idDonHang
     JOIN chitietkhachhang ON donhang.idChiTietKH = chitietkhachhang.idChiTietKH
     JOIN khachhang ON chitietkhachhang.idKhachHang = khachhang.idKhachHang
-    WHERE donhang.ngayTao BETWEEN '". $start. "' AND '". $end. "'
+    WHERE donhang.trangThai = '" . $trangThai . "' AND donhang.ngayTao BETWEEN '" . $start . "' AND '" . $end . "'
     GROUP BY donhang.maDonHang 
     ORDER BY donhang.idDonHang DESC";
-        $query_donhang = mysqli_query($conn, $sql_donhang);
-    }
-    else {
-        $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
-        SUM(sanpham.giaBan*chitietdonhang.soLuong) AS tongGiaBan, 
-        SUM(chitietdonhang.soLuong) AS tongSoLuong
-        FROM chitietdonhang
-        JOIN chitietsanpham AS cs1 ON chitietdonhang.idChiTietSP = cs1.idChiTietSP
-        JOIN sanpham ON cs1.idSanPham = sanpham.idSanPham
-        JOIN donhang ON chitietdonhang.idDonHang = donhang.idDonHang
-        JOIN chitietkhachhang ON donhang.idChiTietKH = chitietkhachhang.idChiTietKH
-        JOIN khachhang ON chitietkhachhang.idKhachHang = khachhang.idKhachHang
-        GROUP BY donhang.maDonHang 
-        ORDER BY donhang.idDonHang DESC";
-        $query_donhang = mysqli_query($conn, $sql_donhang);
-    }
+    $query_donhang = mysqli_query($conn, $sql_donhang);
 } else {
     $sql_donhang = "SELECT donhang.idDonHang, donhang.maDonHang, donhang.trangThai, khachhang.tenKhachHang, donhang.ngayTao,
     SUM(sanpham.giaBan*chitietdonhang.soLuong) AS tongGiaBan, 
@@ -75,10 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ORDER BY donhang.idDonHang DESC";
     $query_donhang = mysqli_query($conn, $sql_donhang);
 }
+
 ?>
 <div style="overflow-y: auto; max-height: 600px;">
     <table border="1" cellspacing="0" width="100%">
-        <form method="POST" action="modules/donhang/xuly.php">
+        <form method="POST" action="modules/donhang/xuly.php" id="myForm">
             <tr>
                 <th>Mã đơn hàng</th>
                 <th>Ngày tạo đơn</th>
@@ -98,10 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <td><?php echo $row['tenKhachHang'] ?></td>
                     <td>$ <?php echo $row['tongGiaBan'] + 5 ?>.00 USD</td>
                     <td>
-                        <select class="trangThai" name="trangThai" id="<?php echo $i?>" onchange="updateInput(this,<?php echo $row['idDonHang'] ?>)">
+                        <select class="trangThai" name="trangThai" id="<?php echo $i ?>" onchange="updateInput(this,<?php echo $row['idDonHang'] ?>)">
                             <option value="<?php echo $row['trangThai'] ?>"><?php echo $row['trangThai'] ?></option>
                             <?php
-                            $sql_trangthai = "SELECT * FROM trangthaidh WHERE trangThai <> '".$row['trangThai']."'";
+                            $sql_trangthai = "SELECT * FROM trangthaidh WHERE trangThai <> '" . $row['trangThai'] . "'";
                             $query3 = mysqli_query($conn, $sql_trangthai);
                             while ($r3 = mysqli_fetch_array($query3)) {
                             ?>
@@ -111,8 +112,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     </td>
                     <td>
-                        <a id="a<?php echo $i?>" href="#"> Cập nhật</a>
-                    &nbsp;&nbsp; | &nbsp;&nbsp;<a href="?action=donhang&query=chitiet&idDonHang=<?php echo $row['idDonHang'] ?>"> Xem chi tiết</a></td>
+                        <a id="a<?php echo $i ?>" href="#"> Cập nhật</a>
+                        &nbsp;&nbsp; | &nbsp;&nbsp;<a href="?action=donhang&query=chitiet&idDonHang=<?php echo $row['idDonHang'] ?>"> Xem chi tiết</a>
+                    </td>
                 </tr>
             <?php } ?>
         </form>
@@ -129,18 +131,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 
 <script>
-    function confirmDelete(id) {
-        if (confirm("Bạn có chắc chắn muốn xóa?")) {
-            // Nếu người dùng nhấn Yes trong hộp thoại xác nhận
-            window.location.href = "modules/danhmuc/xuly.php?iddanhmuc=" + id;
-        }
-    }
+    // function updateInput(select, id) {
+    //     // Lấy id của select
+    //     var selectId = select.id;
+    //     // Lấy giá trị của select được chọn
+    //     var selectedValue = select.value;
 
+    //     document.getElementById('a' + selectId).href = 'modules/donhang/xuly.php?trangThai=' + encodeURIComponent(selectedValue) + '&id=' + id;
+    // }
     function updateInput(select, id) {
-            // Lấy id của select
-            var selectId = select.id;
-            // Lấy giá trị của select được chọn
-            var selectedValue = select.value;
-            document.getElementById('a'+selectId).href = 'modules/donhang/xuly.php?trangThai=' + encodeURIComponent(selectedValue) + '&id=' + id;
-        }
+    // Lấy id của select
+    var selectId = select.id;
+    // Lấy giá trị của select được chọn
+    var selectedValue = select.value;
+
+    document.getElementById('a' + selectId).href = 'modules/donhang/xuly.php?trangThai=' + encodeURIComponent(selectedValue) + '&id=' + id +"&tT=<?php echo $trangThai ?>"+"&start=<?php echo $start ?>"+"&end=<?php echo $end ?>";
+
+}
+
 </script>

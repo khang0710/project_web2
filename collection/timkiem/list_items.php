@@ -8,47 +8,47 @@ if ($page == '' || $page == 1) {
     $begin = 0;
 } else {
     $begin = ($page * 12) - 12;
-}
-if (isset($_GET['danhMuc']) && empty($_GET['kichCo']) && empty($_GET['giaBan'])) {
-    $dm = $_GET['danhMuc'];
+}   
+
+$dm = ""; $kc = ""; $gbd = "";
+
+if(isset($_GET['danhMuc'])){ $dm = $_GET['danhMuc'];}else{ $dm = "";}
+if(isset($_GET['kichCo'])){ $kc = $_GET['kichCo'];}else{ $kc = "";}
+if(isset($_GET['giaBan'])){ $gbd = $_GET['giaBan'];}else{ $gbd = "";}
+
+
+if ($dm!="" && $kc == "" && $gbd =="") {
     $sql_sanpham = "SELECT * FROM sanpham LEFT JOIN danhmuc ON sanpham.loaiSanPham = danhmuc.idDanhMuc WHERE sanpham.tenSanPham LIKE '%".$q."%' AND danhmuc.idDanhMuc = '".$dm."'";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
-}elseif (empty($_GET['danhMuc']) && isset($_GET['kichCo']) && empty($_GET['giaBan'])) {
-    $kc = $_GET['kichCo'];
+}
+elseif ($dm=="" && $kc != "" && $gbd =="") {
     $sql_sanpham = "SELECT * FROM sanpham LEFT JOIN chitietsanpham ON sanpham.idSanPham = chitietsanpham.idSanPham WHERE sanpham.tenSanPham LIKE '%".$q."%' AND chitietsanpham.kichCo = '".$kc."'";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
-}elseif (empty($_GET['danhMuc']) && empty($_GET['kichCo']) && isset($_GET['giaBan'])) {
-    $gbd = $_GET['giaBan'];
+}
+elseif ($dm =="" && $kc == "" && $gbd !="") {
     $gkt = 0;
     if ($gbd == '1'){$gbd = 0; $gkt = 99;} elseif ($gbd == '100'){ $gkt = 200;} elseif ($gbd == '200'){ $gkt = 300;}else{ $gkt = 10000;}
     $sql_sanpham = "SELECT * FROM sanpham WHERE sanpham.tenSanPham LIKE '%".$q."%' AND giaBan >= ".$gbd." AND giaBan <= ".$gkt."";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
-}elseif (isset($_GET['danhMuc']) && isset($_GET['kichCo']) && empty($_GET['giaBan'])) {// danhMuc & kichCo
-    $kc = $_GET['kichCo'];
-    $dm = $_GET['danhMuc'];
+}
+elseif ($dm!="" && $kc != "" && $gbd =="") {// danhMuc & kichCo
     $sql_sanpham = "SELECT * FROM sanpham LEFT JOIN chitietsanpham ON sanpham.idSanPham = chitietsanpham.idSanPham WHERE sanpham.tenSanPham LIKE '%".$q."%' AND sanpham.loaiSanPham = '".$dm."' AND chitietsanpham.kichCo = '".$kc."'";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
-}elseif (empty($_GET['danhMuc']) && isset($_GET['kichCo']) && isset($_GET['giaBan'])) {//kichCo & giaBan
-    $kc = $_GET['kichCo'];
-    $gbd = $_GET['giaBan'];
+}
+elseif ($dm=="" && $kc != "" && $gbd !="") {//kichCo & giaBan
     $gkt = 0;
     if ($gbd == '1'){$gbd = 0; $gkt = 99;} elseif ($gbd == '100'){ $gkt = 200;} elseif ($gbd == '200'){ $gkt = 300;}else{ $gkt = 10000;}
     $sql_sanpham = "SELECT * FROM sanpham LEFT JOIN chitietsanpham ON sanpham.idSanPham = chitietsanpham.idSanPham WHERE sanpham.tenSanPham LIKE '%".$q."%' AND chitietsanpham.kichCo = '".$kc."' AND giaBan >= ".$gbd." AND giaBan <= ".$gkt."";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
-}elseif (isset($_GET['danhMuc']) && empty($_GET['kichCo']) && isset($_GET['giaBan'])) {// giaBan & danhMuc
-    $gbd = $_GET['giaBan'];
+}
+elseif ($dm!="" && $kc == "" && $gbd !="") {// giaBan & danhMuc
     $gkt = 0;
     if ($gbd == '1'){$gbd = 0; $gkt = 99;} elseif ($gbd == '100'){ $gkt = 200;} elseif ($gbd == '200'){ $gkt = 300;}else{ $gkt = 10000;}
-    $dm = $_GET['danhMuc'];
-
     $sql_sanpham = "SELECT * FROM sanpham WHERE sanpham.tenSanPham LIKE '%".$q."%' AND loaiSanPham = '".$dm."' AND giaBan >= ".$gbd." AND giaBan <= ".$gkt."";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
-}elseif (isset($_GET['danhMuc']) && isset($_GET['kichCo']) && isset($_GET['giaBan'])) {// all
-    $kc = $_GET['kichCo'];
-    $gbd = $_GET['giaBan'];
+}
+elseif ($dm!="" && $kc != "" && $gbd !="") {// all
     $gkt = 0;
-    $dm = $_GET['danhMuc'];
-
     if ($gbd == '1'){$gbd = 0; $gkt = 99;} elseif ($gbd == '100'){ $gkt = 200;} elseif ($gbd == '200'){ $gkt = 300;}else{ $gkt = 10000;}
     $sql_sanpham = "SELECT * FROM sanpham LEFT JOIN chitietsanpham ON sanpham.idSanPham = chitietsanpham.idSanPham WHERE sanpham.tenSanPham LIKE '%".$q."%' AND loaiSanPham = '".$dm."' AND chitietsanpham.kichCo = '".$kc."' AND giaBan >= ".$gbd." AND giaBan <= ".$gkt."";
     $sql_trang = mysqli_query($conn, $sql_sanpham.=" AND sanpham.hienThi = 1");
@@ -56,16 +56,13 @@ if (isset($_GET['danhMuc']) && empty($_GET['kichCo']) && empty($_GET['giaBan']))
 else {
     $sql_all = "SELECT * FROM sanpham WHERE tenSanPham LIKE '%".$q."%' AND hienThi = 1 ORDER BY tenSanPham ASC LIMIT $begin,12";
     $sql_trang = mysqli_query($conn, "SELECT * FROM sanpham WHERE tenSanPham LIKE '%".$q."%'");
-
 }
-
 
 if(isset($sql_sanpham)){
     $sql_sanpham.= " AND sanpham.hienThi = 1 GROUP BY sanpham.idSanPham LIMIT $begin,12";
     $query = mysqli_query($conn, $sql_sanpham);
 }else{
     $query = mysqli_query($conn, $sql_all);
-
 }
 
 ?>
@@ -99,7 +96,7 @@ $trang = ceil($row_trang / 12);
     <?php
     for ($i = 1; $i <= $trang; $i++) {
     ?>
-        <a href="index.php?q=<?php echo $q ?>&trang=<?php echo $i ?>">
+        <a href="index.php?q=<?php echo $q ?>&giaBan=<?php if(isset($_GET['giaBan'])){ echo $_GET['giaBan'];} ?>&danhMuc=<?php if(isset($_GET['danhMuc'])){ echo $_GET['danhMuc'];} ?>&kichCo=<?php if(isset($_GET['kichCo'])){ echo $_GET['kichCo'];} ?>&trang=<?php echo $i ?>">
             <li <?php if ($i == $page) {
                     echo 'style="background: #ccc;"';
                 } else {

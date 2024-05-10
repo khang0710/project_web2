@@ -13,7 +13,9 @@ if (isset($_POST['themDanhMuc'])) {
     $sql_sua = "UPDATE donhang SET trangThai = '" . $trangThai . "' WHERE idDonHang = '" . $id . "'";
     mysqli_query($conn, $sql_sua);
     echo "<script>alert('Cập nhật trạng thái đơn hàng thành công!');</script>";
-    echo "<script>window.location.href = '../../index.php?action=donhang&query=lietke';</script>";
+    $url = '../../index.php?action=donhang&query=lietke&trangThai='.$_GET['tT'].'&start='.$_GET['start'].'&end='.$_GET['end'];
+    echo "<script>window.location.href = '".$url."';</script>";
+
 }   elseif (isset($_POST['capNhat'])) {
     $id = $_POST['id'];
     $trangThai = $_POST['trangThai'];
@@ -22,7 +24,7 @@ if (isset($_POST['themDanhMuc'])) {
     echo "<script>alert('Cập nhật trạng thái đơn hàng thành công!');</script>";
     $url = '../../index.php?action=donhang&query=chitiet&idDonHang=' . $id;
     //echo "<script>window.location.href = '".$url."';</script>";
-    echo "<script>window.location.href = '../../index.php?action=donhang&query=lietke';</script>";
+    //echo "<script>window.location.href = '../../index.php?action=donhang&query=lietke';</script>";
 
 }
  else {

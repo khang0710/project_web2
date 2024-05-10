@@ -27,7 +27,7 @@
         <input type="radio" name="kichCo" value="None" <?php if ($row['kichCo'] == '2XL') echo 'checked' ?>> None &nbsp;&nbsp;&nbsp;&nbsp;
         <br><br> -->
         <b>*Số lượng hiện có: </b><?php echo $row['soLuong']?><br><br>
-        <input style="font-size: 18px; padding:8px;" type="text" name="soLuong">
+        <input style="font-size: 18px; padding:8px;" type="text" name="soLuong" placeholder="+ số lượng">
         <br><br>
 
         <br><button class="button-a" name="suaChiTiet" type="submit">

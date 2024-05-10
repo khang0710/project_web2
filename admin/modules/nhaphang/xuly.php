@@ -11,21 +11,27 @@ if (isset($_POST['themChiTiet'])) {
     $mauSac = $_POST['mauSac'];
     $kichCo = $_POST['kichCo'];
     $sql_themct = "INSERT INTO `chitietsanpham`(`idSanPham`, `mauSac`, `kichCo`, `soLuong`) VALUES 
-    ('" . $idSP . "',' " . $mauSac . " ','".$kichCo."','".$soLuong."')";
+    ('" . $idSP . "',' " . $mauSac . " ','" . $kichCo . "','0')";
     mysqli_query($conn, $sql_themct);
-    header("Location:../../index.php?action=nhaphang&query=chitiet&idsp=$idSP");
-}elseif (isset($_POST['suaChiTiet'])) {
-    //ThemChiTiet
+    echo "<script>alert('Thêm chi tiết thành công');</script>";
+    echo "<script>window.history.go(-2);</script>";
+    // header("Location:../../index.php?action=nhaphang&query=chitiet&idsp=$idSP");
+} elseif (isset($_POST['suaChiTiet'])) {
+    //SuaChiTiet
     $id = $_GET['id'];
-    $sql_sua = "UPDATE `chitietsanpham` SET `soLuong`= soLuong + '".$soLuong."' WHERE idChiTietSP = '".$id."'";
+    $sql_sua = "UPDATE `chitietsanpham` SET `soLuong`= soLuong + '" . $soLuong . "' WHERE idChiTietSP = '" . $id . "'";
     mysqli_query($conn, $sql_sua);
-    header("Location:../../index.php?action=nhaphang&query=chitiet&idsp=$idSP");
+    echo "<script>window.history.go(-2);</script>";
+    // header("Location:../../index.php?action=nhaphang&query=chitiet&idsp=$idSP");
 } else {
     //Xoa
-    $id = $_GET['idsp'];
-    $sql_xoa_chitiet = "DELETE FROM chitietsanpham WHERE idSanPham = '" . $id . "'";
-    mysqli_query($conn, $sql_xoa_chitiet);
-    $sql_xoa = "DELETE FROM sanpham WHERE idSanPham = '" . $id . "'";
-    mysqli_query($conn, $sql_xoa);
-    header('Location:../../index.php?action=sanpham&query=lietke');
+    $id = $_GET['idct'];
+    $sql_xoa_chitiet = "DELETE FROM chitietsanpham WHERE idChiTietSP = '" . $id . "'";
+    if (mysqli_query($conn, $sql_xoa_chitiet)) {
+        echo "<script>alert('Xóa chi tiết thành công');</script>";
+        echo "<script>window.history.go(-1);</script>";
+    } else {
+        echo "<script>alert('Xóa chi tiết thất bại');</script>";
+        echo "<script>window.history.go(-1);</script>";
+    }
 }

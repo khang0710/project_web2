@@ -63,6 +63,15 @@
             include("modules/donhang/thongke.php");
         }
 
+        //Tai Khoan
+        else if ($tam == "taikhoan" && $query == "lietke"){
+            include("modules/taikhoan/lietke.php");
+        }else if ($tam == "taikhoan" && $query == "them"){
+            include("modules/taikhoan/them.php");
+        }else if ($tam == "taikhoan" && $query == "sua"){
+            include("modules/taikhoan/sua.php");
+        }
+
         //Dang Xuat
         else if ($tam == "dangxuat" && $query == "dangxuat"){
             unset($_SESSION['dangNhap']);
@@ -71,7 +80,9 @@
 
         //DashBoard
         else{
-            include("dashboard.php");
+            include("modules/donhang/thongke.php");
+
+//            include("dashboard.php");
         }
 
     ?>
